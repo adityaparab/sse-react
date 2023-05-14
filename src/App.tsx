@@ -17,8 +17,8 @@ function App() {
     setRoomId(e.target.value);
 
   useEffect(() => {
-    const source = new EventSource('http://localhost:3000/rooms/notif');
-    fetch('http://localhost:3000/rooms')
+    const source = new EventSource('https://nestjs-sse.herokuapp.com/rooms/notif');
+    fetch('https://nestjs-sse.herokuapp.com/rooms')
       .then((res) => res.json())
       .then((rooms) => {
         setRooms([...rooms]);
@@ -35,7 +35,7 @@ function App() {
 
   const createRoom = async () => {
     const body = { title, name };
-    const req = await fetch('http://localhost:3000/rooms', {
+    const req = await fetch('https://nestjs-sse.herokuapp.com/rooms', {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
@@ -49,7 +49,7 @@ function App() {
   };
 
   const joinRoom = async () => {
-    const req = await fetch(`http://localhost:3000/rooms/${roomId}`);
+    const req = await fetch(`https://nestjs-sse.herokuapp.com/rooms/${roomId}`);
     const data = await req.json();
 
     console.log(data);
